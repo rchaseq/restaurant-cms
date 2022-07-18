@@ -1,9 +1,8 @@
 {
-  "name": "restaurant-cms",
   "name": "serveroo",
   "private": true,
   "version": "0.1.0",
-  "description": "A Strapi application",
+  "description": "A Deliveroo clone",
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
