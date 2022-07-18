@@ -1,3 +1,5 @@
+const vars = process.env;
+
 module.exports = ({ env }) => ({
   defaultConnection: 'default',
   connections: {
@@ -5,17 +7,16 @@ module.exports = ({ env }) => ({
       connector: 'bookshelf',
       settings: {
         client: 'postgres',
-        host: env('DATABASE_HOST', '127.0.0.1'),
-        port: env.int('DATABASE_PORT', 5432),
-        database: env('DATABASE_NAME', 'strapi'),
-        user: env('DATABASE_USERNAME', 'strapi'),
-        password: env('DATABASE_PASSWORD', 'strapi'),
-        schema: env('DATABASE_SCHEMA', 'public'), // Not required
-        ssl: {
-          ca: env('DATABASE_CA')
-        },
+        host: env('DATABASE_HOST', vars.DATABASE_HOST),
+        srv: env.bool('DATABASE_SRV', false),
+        database: env('DATABASE_NAME', 'serveroo'),
+        username: env('DATABASE_USERNAME', vars.DATABASE_USERNAME),
+        password: env('DATABASE_PASSWORD', vars.DATABASE_PASSWORD),
       },
-      debug: false,
+      options: {
+        authenticationDatabase: env('AUTHENTICATION_DATABASE', null),
+        ssl: env.bool('DATABASE_SSL', true),
+      },
     },
   },
 });
